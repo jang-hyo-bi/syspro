@@ -1,27 +1,44 @@
 #include <stdio.h>
-#include"copy.h"
+#include <string.h>
 
-char line[MAXLINE];
-char longest[MAXLINE];
+#define MAXLINE 100 
 
-main(){
-int len;
-int max;
-int i;
-max = 0;
-while(i<5){
-while(gets(line)!=NULL){
- len=strlen(line);
-
- if(len>max){
-    max = len;
-    copy(line,longest);
- }
-i++;
+void copy(char from[], char to[]) {
+    int i = 0;
+    while ((to[i] = from[i]) != '\0') {
+        i++;
+    }
 }
-}
-if(max>0)
-    printf("%s\n",longest);
 
+int main() {
+    char lines[5][MAXLINE]; 
+    int lengths[5];
+    int i, j;
+
+    for (i = 0; i < 5; i++) {
+        gets(lines[i]);
+        lengths[i] = strlen(lines[i]);
+    }
+
+    for (i = 0; i < 5; i++) {
+        for (j = i + 1; j < 5; j++) {
+            if (lengths[i] < lengths[j]) {
+                int tempLength = lengths[i];
+                lengths[i] = lengths[j];
+                lengths[j] = tempLength;
+
+                char tempLine[MAXLINE];
+                copy(lines[i], tempLine);
+                copy(lines[j], lines[i]);
+                copy(tempLine, lines[j]);
+            }
+        }
+    }
+
+    for (i = 0; i < 5; i++) {
+        printf("%s\n", lines[i]);
+    }
+
+    return 0;
 }
-return 0;
+
