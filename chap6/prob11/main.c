@@ -25,7 +25,6 @@ int main(int argc, char **argv)
     int showType = 0;
     int showQuote = 0;
 
-    // -i, -p, -Q 옵션 처리
     if(argc == 2 && (strcmp(argv[1], "-i") == 0 || strcmp(argv[1], "-p") == 0 || strcmp(argv[1], "-Q") == 0))
     {
         if(strcmp(argv[1], "-i") == 0)
