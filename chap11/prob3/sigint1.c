@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <signal.h>
 void intHandler();
-/* 인터럽트 시그널을 처리한다. */
+
 int main( )
 {
    signal(SIGINT,intHandler);
